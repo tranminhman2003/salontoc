@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="assets/images/header/salon.jpg">
+	<title>T&L SALON</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!--((((((((((((           ----------------------------------------------------------------             )))))))))))))-->
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+	  <link rel="stylesheet" href="assets/assets/bootstrap-material-design-font/css/material.css">
+	  <link rel="stylesheet" href="assets/assets/tether/tether.min.css">
+	  <link rel="stylesheet" href="assets/assets/animate.css/animate.min.css">
+	  <link rel="stylesheet" href="assets/assets/theme/css/style.css">
+	  <link rel="stylesheet" href="assets/assets/mobirise/css/mbr-additional.css" type="text/css">
+
+	  <!--------------------------------------------------------------------------------------------------------------------->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	  <link rel="stylesheet" href="assets/assets/bootstrap/css/bootstrap-social.scss">
+	  <link rel="stylesheet" href="assets/assets/bootstrap/css/bootstrap-social.less">
+	<link rel="stylesheet" href="assets/assets/bootstrap/css/bootstrap-social.css">
+	<script src="assets/js/modernizr.custom.js"></script>
+	<!--------------------------------------------------------------------------------------------------------------------->
+
+	  <link href="assets/css/main.css" rel="stylesheet">
+	  <script src="assets/js/login/login.js"></script>
+	  <link rel="stylesheet" href="assets/css/login/login.css">
+	  <script src="assets/js/index/index.js"></script>
+
+  </head>
+
+  <body>
+ 	 <script>
+		var bits = 90;
+		var speed = 40;
+		var bangs = 7;
+		var colours = new Array("#03f", "#f03", "#fff", "#f7efa1", "#0cf", "#f93", "#f0c", "#fff");
+		var bangheight = new Array();
+		var intensity = new Array();
+		var colour = new Array();
+		var Xpos = new Array();
+		var Ypos = new Array();
+		var dX = new Array();
+		var dY = new Array();
+		var stars = new Array();
+		var decay = new Array();
+		var swide = 800;
+		var shigh = 600;
+		var boddie;
+		window.onload = function() {
+			if (document.getElementById) {
+				var i;
+				boddie = document.createElement("div");
+				boddie.style.position = "fixed";
+				boddie.style.top = "0px";
+				boddie.style.left = "0px";
+				boddie.style.overflow = "visible";
+				boddie.style.width = "1px";
+				boddie.style.height = "1px";
+				boddie.style.backgroundColor = "transparent";
+				document.body.appendChild(boddie);
+				set_width();
+				for (i = 0; i < bangs; i++) {
+					write_fire(i);
+					launch(i);
+					setInterval('stepthrough(' + i + ')', speed);
+				}
+			}
+		}
+
+		function write_fire(N) {
+			var i, rlef, rdow;
+			stars[N + 'r'] = createDiv('|', 12);
+			boddie.appendChild(stars[N + 'r']);
+			for (i = bits * N; i < bits + bits * N; i++) {
+				stars[i] = createDiv('*', 13);
+				boddie.appendChild(stars[i]);
+			}
+		}
+
+		function createDiv(char, size) {
+			var div = document.createElement("div");
+			div.style.font = size + "px monospace";
+			div.style.position = "absolute";
+			div.style.backgroundColor = "transparent";
+			div.appendChild(document.createTextNode(char));
+			return (div);
+		}
+
+		function launch(N) {
+			colour[N] = Math.floor(Math.random() * colours.length);
+			Xpos[N + "r"] = swide * 0.5;
+			Ypos[N + "r"] = shigh - 5;
+			bangheight[N] = Math.round((0.5 + Math.random()) * shigh * 0.4);
+			dX[N + "r"] = (Math.random() - 0.5) * swide / bangheight[N];
+			if (dX[N + "r"] > 1.25) stars[N + "r"].firstChild.nodeValue = "/";
+			else if (dX[N + "r"] < -1.25) stars[N + "r"].firstChild.nodeValue = "\\";
+			else stars[N + "r"].firstChild.nodeValue = "|";
+			stars[N + "r"].style.color = colours[colour[N]];
+		}
+
+		function bang(N) {
+			var i, Z, A = 0;
+			for (i = bits * N; i < bits + bits * N; i++) {
+				Z = stars[i].style;
+				Z.left = Xpos[i] + "px";
+				Z.top = Ypos[i] + "px";
+				if (decay[i]) decay[i]--;
+				else A++;
+				if (decay[i] == 15) Z.fontSize = "10px";
+				else if (decay[i] == 7) Z.fontSize = "2px";
+				else if (decay[i] == 1) Z.visibility = "hidden";
+				Xpos[i] += dX[i];
+				Ypos[i] += (dY[i] += 1.25 / intensity[N]);
+			}
+			if (A != bits) setTimeout("bang(" + N + ")", speed);
+		}
+
+		function stepthrough(N) {
+			var i, M, Z;
+			var oldx = Xpos[N + "r"];
+			var oldy = Ypos[N + "r"];
+			Xpos[N + "r"] += dX[N + "r"];
+			Ypos[N + "r"] -= 4;
+			if (Ypos[N + "r"] < bangheight[N]) {
+				M = Math.floor(Math.random() * 3 * colours.length);
+				intensity[N] = 5 + Math.random() * 4;
+				for (i = N * bits; i < bits + bits * N; i++) {
+					Xpos[i] = Xpos[N + "r"];
+					Ypos[i] = Ypos[N + "r"];
+					dY[i] = (Math.random() - 0.5) * intensity[N];
+					dX[i] = (Math.random() - 0.5) * (intensity[N] - Math.abs(dY[i])) * 1.25;
+					decay[i] = 25 + Math.floor(Math.random() * 25);
+					Z = stars[i];
+					if (M < colours.length) Z.style.color = colours[i % 2 ? colour[N] : M];
+					else if (M < 2 * colours.length) Z.style.color = colours[colour[N]];
+					else Z.style.color = colours[i % colours.length];
+					Z.style.fontSize = "20px";
+					Z.style.visibility = "visible";
+				}
+				bang(N);
+				launch(N);
+			}
+			stars[N + "r"].style.left = oldx + "px";
+			stars[N + "r"].style.top = oldy + "px";
+		}
+		window.onresize = set_width;
+
+		function set_width() {
+			var sw_min = 999999;
+			var sh_min = 999999;
+			if (document.documentElement && document.documentElement.clientWidth) {
+				if (document.documentElement.clientWidth > 0) sw_min = document.documentElement.clientWidth;
+				if (document.documentElement.clientHeight > 0) sh_min = document.documentElement.clientHeight;
+			}
+			if (typeof(self.innerWidth) != "undefined" && self.innerWidth) {
+				if (self.innerWidth > 0 && self.innerWidth < sw_min) sw_min = self.innerWidth;
+				if (self.innerHeight > 0 && self.innerHeight < sh_min) sh_min = self.innerHeight;
+			}
+			if (document.body.clientWidth) {
+				if (document.body.clientWidth > 0 && document.body.clientWidth < sw_min) sw_min = document.body.clientWidth;
+				if (document.body.clientHeight > 0 && document.body.clientHeight < sh_min) sh_min = document.body.clientHeight;
+			}
+			if (sw_min == 999999 || sh_min == 999999) {
+				sw_min = 800;
+				sh_min = 600;
+			}
+			swide = sw_min;
+			shigh = sh_min;
+		}
+		</script><!-- pháo hoa -->
+	 <div id="tet">
+		 <img class="top-left" src="https://itexpress.vn/images/newyear/topleft.png"/>
+		 <img class="top-right"  src="https://itexpress.vn/images/newyear/topright.png"/>
+		 <img class="bottom-left" src="https://itexpress.vn/images/newyear/bottomleft.png"/>
+		 <img class="bottom-right" src="https://itexpress.vn/images/newyear/bottomright.png"/>
+	 </div>
+	 <script></script>
+
+  	<div id="top"></div>
+	<div id="login">
+		<div id="id01" class="modal">
+			<form class="modal-content animate">
+				<div class="login-cover">
+					<label><b>Username</b></label>
+					<input type="text" placeholder="Enter Username" name="uname" required>
+
+					<label style="margin: 20px 0 0;"><b>Password</b></label>
+					<input type="password" placeholder="Enter Password" name="psw" required>
+
+					<button class="btn btn-green" type="submit">Login</button>
+					<input type="checkbox" checked="checked"> <b>Remember me</b> </input>
+				</div>
+				<div class="login-cover" style="padding: 0px 30px;">
+					<div class="row">
+						<div class="col-xs-6">
+							<a class="btn btn-block btn-social btn-twitter" style="height: 35px;">
+								<span class="fa fa-twitter"></span> Sign in with Twitter
+							</a>
+						</div>
+						<div class="col-xs-6">
+							<a class="btn btn-block btn-social btn-google" style="height: 35px;">
+								<span class="fa fa-google-plus"></span> Sign in with Google
+							</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<a class="btn btn-block btn-social btn-facebook" style="height: 35px;margin-top: 5px;">
+								<span class="fa fa-facebook"></span> Sign in with Facebook
+							</a>
+						</div>
+						<div class="col-xs-6">
+							<a class="btn btn-block btn-social btn-yahoo" style="height: 35px;margin-top: 5px;">
+								<span class="fa fa-yen"></span> Sign in with Yahoo
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="login-cover bg-x">
+					<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+					<span class="psw">
+						<b>Forgot</b>
+						<a href="#">password?</a>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+	<nav class="menu" id="theMenu">
+		<div class="menu-wrap">
+			<h1 class="logo"><a href="index.html">T&L SALON</a></h1>
+			<i class="fa fa-arrow-right menu-close"></i>
+			<a href="assets/html/prices.html">Scheduling - Opening Times</a>
+			<a href="">Products</a>
+			<a href="assets/html/images.html">Beautiful hair samples</a>
+			<a href="assets/html/guide.html">Hairdressing beauty guide</a>
+			<a href="assets/html/tie.html">Tie your hair</a>
+			<a href="assets/html/CS-hair.html">Black dyed hair</a>
+			<hr>
+			<a href="assets/html/contacts.html">Contact Us</a>
+			<a href="#cf-menu">ADDRESS</a>
+			<a href=""><i class="fa fa-facebook"></i></a>
+			<a href=""><i class="fa fa-twitter"></i></a>
+			<a href=""><i class="fa fa-envelope"></i></a>
+			<a  onclick="document.getElementById('id01').style.display='block'"  style="clear: both">login</a>
+			<a href="assets/html/Join.html">join</a>
+
+		</div>
+
+		<!-- Menu button -->
+		<div id="menuToggle"><i class="fa fa-bars"></i></div>
+	</nav>
+
+
+	<!--	 HEADERWRAP 	-->
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-8 ">
+					<h1>T&L SALON</h1>
+					<h3>WE ARE HAPPY TO SERVE YOU </h3>
+					<p>Here you’ll find tutorials, tips, tricks and beauty advice to help you to love your hair.
+						Hair Romance posts hair news daily to bring you hair-spiration and ways to have fun with your hair.</p>
+					<div class="spacer"></div>
+				</div>
+			</div>
+			<div class="mbr-arrow mbr-arrow-floating hidden-sm-down" aria-hidden="true">
+				<a href="#prices" class="button-down">
+					<i class="fa fa-angle-down"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+  <!--	PRICES-TOP	-->
+	<div id="prices">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<h1>POPULAR BEARD STYLES</h1>
+					<div class="row">
+						<div class="col-xs-3"><img src="assets/images/operator/1.jpg" alt=""></div>
+						<div class="col-xs-3"><img src="assets/images/operator/2.jpg" alt=""></div>
+						<div class="col-xs-3"><img src="assets/images/operator/3.jpg" alt=""></div>
+						<div class="col-xs-3"><img src="assets/images/operator/4.jpg" alt=""></div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3"><img src="assets/images/operator/5.jpg" alt=""></div>
+						<div class="col-xs-3"><img src="assets/images/operator/6.jpg" alt=""></div>
+						<div class="col-xs-3"><img src="assets/images/operator/7.jpg" alt=""></div>
+						<div class="col-xs-3"><img src="assets/images/operator/8.jpg" alt=""></div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3"><img src="assets/images/operator/9.jpg" alt=""></div>
+						<div class="col-xs-3"><img src="assets/images/operator/10.jpg" alt=""></div>
+						<div class="col-xs-3"><img src="assets/images/operator/11.jpg" alt=""></div>
+						<div class="col-xs-3"><img src="assets/images/operator/12.png" alt=""></div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<h1>CHECK OUR TOP PRICES</h1>
+					<div class="row">
+						<ul>
+							<li class="mt-li-up">
+								<div class="name"><p>Trim your Beard</p></div>
+								<div class="money"><p>from $15</p></div>
+							</li>
+							<li>
+								<div class="name"><p>Trim your Hair</p></div>
+								<div class="money"><p>from $40</p></div>
+							</li>
+							<li>
+								<div class="name"><p>Special Hair Treatment</p></div>
+								<div class="money"><p>from $59</p></div>
+							</li>
+							<li>
+								<div class="name"><p>Color your Hair</p></div>
+								<div class="money"><p>from $69</p></div>
+							</li>
+							<li>
+								<div class="name"><p>Wax your Hair</p></div>
+								<div class="money"><p>from $12</p></div>
+							</li>
+							<li>
+								<div class="name"><p>Complete Treatment</p></div>
+								<div class="money"><p>from $99</p></div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--	CALENDER	-->
+	<div id="calender">
+		<div class="container">
+			<hr>
+			<div class="row">
+				<div class="col-sm-7">
+					<div class="row">
+						<div class="col-xs-2"><a href="">TIME</a></div>
+						<div class="col-xs-2"><a href="">MON</a></div>
+						<div class="col-xs-2"><a href="">TUE</a></div>
+						<div class="col-xs-2"><a href="">WED</a></div>
+						<div class="col-xs-2"><a href="">THU</a></div>
+						<div class="col-xs-2"><a href="">FRI</a></div>
+					</div>
+					<div class="row div-mt a-order-h-l">
+						<div class="col-xs-2"><a class="atime" href="">08:00</a></div>
+						<div class="col-xs-2"><a class="xxx" href=""></a></div>
+						<div class="col-xs-2"><a class="xxx" href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a class="aaa" href=""></a></div>
+						<div class="col-xs-2"><a class="aaa" href=""></a></div>
+					</div>
+					<div class="row div-mt a-order-h-l">
+						<div class="col-xs-2"><a class="atime" href="">09:00</a></div>
+						<div class="col-xs-2"><a class="aaa" href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+					</div>
+					<div class="row div-mt a-order-h-l">
+						<div class="col-xs-2"><a class="atime" href="">10:00</a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a class="aaa" href=""></a></div>
+					</div>
+					<div class="row div-mt a-order-h-l">
+						<div class="col-xs-2"><a class="atime" href="">11:00</a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a class="aaa" href=""></a></div>
+						<div class="col-xs-2"><a class="aaa" href=""></a></div>
+					</div>
+					<div class="row div-mt a-order-h-l">
+						<div class="col-xs-2"><a class="atime" href="">12:00</a></div>
+						<div class="col-xs-2"><a class="aaa" href=""></a></div>
+						<div class="col-xs-2"><a class="aaa"  href=""></a></div>
+						<div class="col-xs-2"><a class="aaa"  href=""></a></div>
+						<div class="col-xs-2"><a class="aaa"  href=""></a></div>
+						<div class="col-xs-2"><a class="aaa"  href=""></a></div>
+					</div>
+					<div class="row div-mt a-order-h-l">
+						<div class="col-xs-2"><a class="atime" href="">13:00</a></div>
+						<div class="col-xs-2"><a class="aaa" href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+					</div>
+					<div class="row div-mt a-order-h-l">
+						<div class="col-xs-2"><a class="atime" href="">14:00</a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a class="aaa" href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+					</div>
+					<div class="row div-mt a-order-h-l">
+						<div class="col-xs-2"><a class="atime" href="">15:00</a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a href=""></a></div>
+						<div class="col-xs-2"><a class="xxx" href=""></a></div>
+					</div>
+					<div id="button-order">
+						<button type="button" class="bt-od btn btn-green">
+							Click here to proceed <span class="glyphicon glyphicon-menu-down"></span>
+						</button>
+					</div>
+				</div>
+				<div class="col-sm-5">
+					<div id="order-hair">
+						<div>
+							<form>
+								<!-- NAME -->
+								<div class="row">
+									<label><b>NAME *</b></label>
+									<input type="text"  required>
+								</div>
+								<!-- NAME -->
+								<div class="row">
+									<label><b>PHONE *</b></label>
+									<input type="text"  required>
+								</div>
+
+								<!-- 1/2 + 1/2 -->
+								<div class="row">
+									<div class="col-sm-6 pd-0" >
+										<label><b>TIME * (h)</b></label>
+										<div class="form-group">
+											<select class="form-control" id="sel1">
+												<option>08:00</option>
+												<option>09:00</option>
+												<option>10:00</option>
+												<option>11:00</option>
+												<option>12:00</option>
+												<option>13:00</option>
+												<option>14:00</option>
+												<option>15:00</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-6 pd-0" style="padding-left:10px ">
+										<label><b>LETTER *</b></label>
+										<div class="form-group">
+											<select class="form-control" id="sel2">
+												<option>MONDAY</option>
+												<option>TUESDAY</option>
+												<option>WEDNESDAY</option>
+												<option>THURSDAY</option>
+												<option>FRIDAY</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<!-- MESSAGE  -->
+								<div class="row">
+									<div class="form-group">
+										<label for="comment">MESSAGE </label>
+										<textarea class="form-control" rows="5" id="comment"></textarea>
+									</div>
+								</div>
+
+								<!-- SEND  -->
+								<div class="row">
+									<button class="btn btn-green button-send-order" type="submit">SEND</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div id="img-2" style="clear: both">
+						<div class="row">
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/1.jpg" alt=""></div>
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/2.jpg" alt=""></div>
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/13.jpg" alt=""></div>
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/11.jpg" alt=""></div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/9.jpg" alt=""></div>
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/4.jpg" alt=""></div>
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/8.jpg" alt=""></div>
+							<div class="col-sm-3"><img src="assets/images/hair/img-2/6.jpg" alt=""></div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/5.jpg" alt=""></div>
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/3.jpg" alt=""></div>
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/12.jpg" alt=""></div>
+							<div class="col-sm-3"><img  src="assets/images/hair/img-2/7.jpg" alt=""></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div id="free">
+			<h1>DISCOUNT COUPON FOR -20%: T&L SALON</h1>
+			<p>We provide the best barber services in town.
+				If you have any questions about our services, do not hesitate to contact us at
+				<span style="background:#b45964;color: white">T-L.Salon.hair.com</span>. <br>
+				Com and let us know your wishes.
+				We will be happy to answer your inquiries. Or call us at 84+1657.833.112...</p>
+		</div>
+	</div>
+
+	<!--	IMAGES 	-->
+	<div class="stylehair">
+		<div class="container">
+			<hr>
+		  <div class="row mt">
+			<div class="col-xs-9">
+				<h1>Beautiful hair samples</h1>
+				<p>The famous musicians around the world have visited T&L SALON and they were very pleased to come to us</p>
+				<p>We offer a number of beautiful hair samples :</p>
+			</div>
+			<div class="col-xs-3">
+				<p class="pull-right"><br>
+					<button type="button" class="btn btn-green orange">
+						<a href="assets/html/images.html">Next</a>
+					</button>
+				</p>
+			</div>
+		  </div>
+		</div>
+	</div>
+    <div id="port">
+    	<div class="container">
+	    	<div class="row mt">
+				<ul id="portfolio" class="grid effect-2">
+					<li><a href="assets/html/images-2.html" target="_blank"><img src="assets/images/hair/1.jpg"></a></li>
+					<li><a href="assets/images/hair/2.jpg" target="_blank"><img src="assets/images/hair/2.jpg"></a></li>
+					<li><a href="assets/images/hair/3.jpg" target="_blank"><img src="assets/images/hair/3.jpg"></a></li>
+					<li><a href="assets/images/hair/4.jpg" target="_blank"><img src="assets/images/hair/4.jpg"></a></li>
+					<li><a href="assets/images/hair/5.jpg" target="_blank"><img src="assets/images/hair/5.jpg"></a></li>
+					<li><a href="assets/images/hair/6.png" target="_blank"><img src="assets/images/hair/6.png"></a></li>
+					<li><a href="assets/images/hair/8.jpg" target="_blank"><img src="assets/images/hair/8.jpg"></a></li>
+					<li><a href="assets/images/hair/9.jpg" target="_blank"><img src="assets/images/hair/9.jpg"></a></li>
+					<li><a href="assets/images/hair/15.png" target="_blank"><img src="assets/images/hair/15.png"></a></li>
+					<li><a href="assets/images/hair/17.jpg" target="_blank"><img src="assets/images/hair/17.jpg"></a></li>
+					<li><a href="assets/images/hair/16.jpg" target="_blank"><img src="assets/images/hair/16.jpg"></a></li>
+					<li><a href="assets/images/hair/18.jpg" target="_blank"><img src="assets/images/hair/18.jpg"></a></li>
+					<li><a href="assets/images/hair/19.jpg" target="_blank"><img src="assets/images/hair/19.jpg"></a></li>
+					<li><a href="assets/images/hair/20.jpg" target="_blank"><img src="assets/images/hair/20.jpg"></a></li>
+					<li><a href="assets/images/hair/21.jpg" target="_blank"><img src="assets/images/hair/21.jpg"></a></li>
+					<li><a href="assets/images/hair/23.jpg" target="_blank"><img src="assets/images/hair/23.jpg"></a></li>
+					<li><a href="assets/images/hair/25.jpg" target="_blank"><img src="assets/images/hair/25.jpg"></a></li>
+					<li><a href="assets/images/hair/26.jpg" target="_blank"><img src="assets/images/hair/26.jpg"></a></li>
+					<li><a href="assets/images/hair/28.jpg" target="_blank"><img src="assets/images/hair/28.jpg"></a></li>
+					<li><a href="assets/images/hair/29.jpg" target="_blank"><img src="assets/images/hair/29.jpg"></a></li>
+					<li><a href="assets/images/hair/30..jpg" target="_blank"><img src="assets/images/hair/30..jpg"></a></li>
+					<li><a href="assets/images/hair/31.jpg" target="_blank"><img src="assets/images/hair/24.jpg"></a></li>
+				</ul>
+	    	</div><!-- row -->
+	    </div><!-- container -->
+    </div>
+	<div id="img-1">
+		<img src="assets/images/calendar/bg.jpg" alt="">
+	</div>
+
+
+
+
+
+	<!--	VIDEO 	-->
+	<div class="stylehair">
+		<div class="container">
+			<div class="row mt">
+				<div class="col-xs-9">
+					<h1>Hairdressing beauty guide</h1>
+					<p>The following are some sample video :</p>
+				</div>
+				<div class="col-xs-3">
+					<p class="pull-right"><br>
+						<button type="button" class="btn btn-green">
+							<a href="assets/html/guide.html">Next</a>
+						</button>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="video">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-xs-6">
+					<iframe src="https://www.youtube.com/embed/BhU9ZoqTzgM" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<div class="col-sm-4 col-xs-6">
+					<iframe src="https://www.youtube.com/embed/9IVh7yEevnU" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<div class="col-sm-4">
+					<iframe  src="https://www.youtube.com/embed/NrrG_NmyHVM" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 col-xs-6">
+					<iframe src="https://www.youtube.com/embed/dGfrVS1RLAw" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<div class="col-sm-4 col-xs-6">
+					<iframe src="https://www.youtube.com/embed/_DHTALp0foI" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<div class="col-sm-4">
+					<iframe src="https://www.youtube.com/embed/yv1paLRmxv4" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--	TEXT-IMG 	-->
+	<div class="stylehair">
+		<div class="container">
+			<hr>
+			<div class="row mt">
+				<div class="col-xs-9">
+					<h1>Tie your hair</h1>
+					<p>Here are some samples had beautiful hair </p>
+				</div>
+				<div class="col-xs-3">
+					<p class="pull-right"><br>
+						<button type="button" class="btn btn-green">
+							<a href="assets/html/tie.html">Next</a>
+						</button>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="text-img">
+		<div class="container">
+			<div class="row  display-none">
+				<div class="col-xs-4">
+					<img src="assets/images/text-img/3.jpg" alt="">
+				</div>
+				<div class="col-xs-8">
+					<h4>STEP-BY-STEP TUTORIAL:</h4>
+					<p>1. Separate the top half of your hair and clip it out of the way.</p>
+					<p>2. Braid the bottom section.
+						Create a braid (plait) by splitting the bottom into three equal sections.
+						Cross the left over the middle, then the right over the left and continue down.</p>
+					<p>3. Secure the end of the braid with your elastic. Stretch the braid out by pulling at the sides to make it wider.</p>
+					<p>4. Braid the top section. Repeat the same steps on the top section so you have two braids in your hair.</p>
+					<p>5. Twist the bottom braid into a bun. Curve your braid around to form a bun and pin in place with bobby pins.
+						Don’t forget to tuck the ends in!</p>
+					<p>6. Wrap the top braid around the bun.
+						My hair isn’t that long so it just fits around my bun and I’ve tucked the ends under. Pin in place with bobby pins.</p>
+				</div>
+			</div>
+			<hr>
+			<div class="row  display-none">
+				<div class="col-xs-8">
+					<h4>LONG HAIR GROWTH TIPS</h4>
+					<p>If long hair really is your goal you need to keep it as natural as possible:
+						eat fantastic foods, exercise and look after your body as a whole.
+						That’s the only way to get long and healthy hair.</p>
+					<p>If you’re looking for a shortcut (like I always am!) clip-in hair extensions are so the way to go.
+						They’re quick and easy to style. You can just can pop them in when you want long hair.</p>
+					<h5>A REASON YOUR HAIR MAY NOT BE GROWING…</h5>
+					<p>The usual culprit to blame for slow hair growth is heat styling. <br>
+						Trust me when I say how much I love heat styling, but it does affect my hair growth. <br>
+						The heat actually can slow your hair growth and it can also cause physical damage to your hair.
+						This means you need more haircuts to get rid of split ends and this cuts off any signs of hair growth as well.<br>
+						I’m not putting away my heat tools any time soon,
+						but I’m just being little bit more mindful and using them only when I need to.</p>
+				</div>
+				<div class="col-xs-4">
+					<img src="assets/images/text-img/4.jpg" alt="">
+				</div>
+			</div>
+			<hr>
+		</div>
+
+	</div>
+
+
+
+
+
+
+	<!-- 	SERVICES -->
+	<div id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<h1>BUY NOW</h1>
+					<p>
+						If you come all the way down here,
+						you probably like our T&L theme.
+						To help you find where you can buy it,
+						we prepared a solution for that also.
+						Simply click the button below.
+					</p>
+					<p>
+						<a class="buy" href="">BUY</a>
+					</p>
+				</div>
+				<div class="col-sm-3">
+					<h1>INTRODUCE</h1>
+					<p>- T&L is a breath of fresh air to the industry.</p>
+					<p>-	It is bright, modern, stylish and a wonderful environment in which to have a treatment.</p>
+				</div>
+				<div class="col-sm-3">
+					<h1>ABOUT US</h1>
+					<p>Tel: 84+1657833112</p>
+					<p>E : Ng1anh2tan3@gmail.com</p>
+					<p>H : T&LHairstyle.com</p>
+					<div id="google_translate_element"></div>
+					<script type="text/javascript">
+						function googleTranslateElementInit()
+						{
+							new google.translate.TranslateElement({pageLanguage: 'en',
+								layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+								multilanguagePage: true}, 'google_translate_element');
+						}
+					</script>
+					<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+				</div>
+				<div class="col-sm-3">
+					<h1>OPENING TIMES</h1>
+					<div class="row">
+						<div class="col-xs-6">
+							<p class="pletter">Monday </p>
+							<p class="pletter">Tuesday </p>
+							<p class="pletter">Wednesday </p>
+							<p class="pletter">Thursday </p>
+							<p class="pletter">Friday </p>
+							<p class="pletter">Saturday </p>
+							<p class="pletter">Sunday </p>
+						</div>
+						<div class="col-xs-6">
+							<p class="ptime">09:00 - 15:00</p>
+							<p class="ptime">09:00 - 15:00</p>
+							<p class="ptime">08:00 - 15:00</p>
+							<p class="ptime">08:00 - 15:00</p>
+							<p class="ptime">08:00 - 14:00</p>
+							<p class="pclose">CLOSED</p>
+							<p class="pclose">CLOSED</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer">
+		<a href="#top">
+			<span class="glyphicon glyphicon-menu-up"></span>
+		</a>
+		<p>Copyright &copy;T&L Salon </p>
+	</div>
+
+	<!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+	<script src="assets/js/masonry.pkgd.min.js"></script>
+	<script src="assets/js/imagesloaded.js"></script>
+    <script src="assets/js/classie.js"></script>
+	<script src="assets/js/AnimOnScroll.js"></script>
+	<script>
+		new AnimOnScroll( document.getElementById( 'portfolio' ), {
+			minDuration : 0.4,
+			maxDuration : 0.7,
+			viewportFactor : 0.2
+		} );
+	</script>
+	<!--((((((((((((           ----------------------------------------------------------------             )))))))))))))-->
+	<script src="assets/assets/web/assets/jquery/jquery.min.js"></script>
+	<script src="assets/assets/tether/tether.min.js"></script>
+	<script src="assets/assets/smooth-scroll/SmoothScroll.js"></script>
+	<script src="assets/assets/viewportChecker/jquery.viewportchecker.js"></script>
+	<script src="assets/assets/theme/js/script.js"></script>
+	<script src="assets/assets/formoid/formoid.min.js"></script>
+	<!--------------------------------------------------------------------------------------------------------------------->
+
+  </body>
+</html>

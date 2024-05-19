@@ -1,0 +1,73 @@
+#prices-order .row p{
+    border-bottom: 1px dashed #ddd;
+}
+#prices-order .row {
+    margin:10px 0;
+}
+#prices-order .color-p p{
+    color: #00a885;
+    font-weight: 600;
+}
+#prices-order .p-cl-12{
+    color: #002d20;
+}
+
+
+#order {
+    margin:15px 0px;
+}
+#order a{
+    display: block;
+    font-weight: 600;
+    color: #727272;
+}
+#order .div-mt{
+    margin-top:7px;
+}
+#order .atime{
+    color: #00a885;
+    font-weight: 600;
+}
+#order .aclose{
+    color:#f66;
+    font-weight: 600;
+}
+#order .pd-a-order a{
+    padding: 5px 0;
+    border-bottom:1px dashed #efefef;
+}
+
+#order .col-sm-7{
+    text-align: center;
+}
+
+
+#order .a-order-h-l a.atime{
+    background: #fff;
+}
+#order .a-order-h-l a{
+    height: 25px;
+    width:100%;
+    border: 1px solid white;
+    background: #008a6d;
+    box-shadow:2px 5px 5px 0px silver;
+}
+#order .a-order-h-l a:active{
+     background: #669c6e;
+
+ }
+
+
+#order #click-open-she button{
+    margin:15px;
+}
+.pd-0{
+    padding: 0;
+}
+
+#order .a-order-h-l a.xxx{
+    background: #f66;
+}
+#order .a-order-h-l a.aaa{
+    background: #999;
+}

@@ -1,0 +1,859 @@
+
+.pd-0{
+    padding: 0;
+}
+p {
+    line-height: 28px;
+    font-size: 17px;
+}
+.mt {
+    padding-top: 25px;
+}
+a:hover, a:focus {
+    color: #7b7b7b;
+    text-decoration: none;
+    outline: 0;
+}
+hr{
+    height: 2px;
+   clear: both;
+    background: #e4e5e7;
+}
+h1{
+    font-family: fantasy
+}
+.btn-green {
+    color: #fff;
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+    font-weight: 300;
+    box-shadow:2px 5px 5px 0px rgba(70, 70, 70, 0.58);
+}
+.btn-green:hover,
+.btn-green:focus,
+.btn-green:active,
+.btn-green.active,
+.open .dropdown-toggle .btn-green {
+    color: #fff;
+    background-color: #16a085;
+    border-color: #16a085;
+    font-weight: 300;
+}
+.tm {
+    font-size: 14px;
+    line-height: 20px;
+}
+ul{
+    list-style: none;
+}
+
+@media screen  and (max-width: 768px){
+    #headerwrap h1{
+        font-size: 70px;
+    }
+}
+
+#free{background:#16a085;text-align:center;border: 5px dashed white;margin-top: 10px}#free p,#free h1{color: white}
+
+
+
+/*   MENU   */
+.menu {
+    position: fixed;
+    right: -240px;
+    width: 300px;
+    height: 100%;
+    top: 0;
+    z-index: 10;
+    text-align: left;
+}
+.menu.menu-open {
+    right: 0;
+}
+.menu-wrap {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    background: rgba(26, 26, 26, 0.92);
+    width: 240px;
+    height: 100%}
+.menu h1.logo a {
+    font-family: Raleway, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: .15em;
+    line-height: 40px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-top: 20px;
+}
+.menu h1.logo a:hover {
+    color: #1abc9c;
+}
+.menu img.logo {
+    margin: 20px 0;
+    max-width: 160px;
+}
+.menu a {
+    margin-left: 20px;
+    color: #ffffff;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+.menu a:hover {
+    color: #d1d1d1;
+}
+.menu a:active {
+    color: #fff;
+}
+.menu a>i {
+    float: left;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    width: 25px;
+    font-size: 14px;
+    line-height: 40px;
+    margin: 25px 2px;
+}
+.menu-close {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    font-size: 14px;
+    color: gray;
+    width: 30px;
+    height: 40px;
+    line-height: 40px;
+    top: 18px;
+    right: 5px;
+}
+.menu-close:hover {
+    color: #fff;
+}
+.body-push {
+    overflow-x: hidden;
+    position: relative;
+    left: 0;
+}
+.body-push-toright {
+    left: 200px;
+}
+.body-push-toleft {
+    left: -200px;
+}
+.menu, .body-push {
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+#menuToggle {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    z-index: 11;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    background: rgba(115, 115, 103, 0.71);
+
+}
+#menuToggle:hover {
+    color: #fff;
+    background: rgba(69, 69, 62, 0.71);
+
+}
+
+
+/*  CALENDER    */
+#calender {
+    padding: 15px 0;
+}
+#calender .button-send-order{
+    float: right;
+    border: none;
+    border-radius: 0px;
+    margin-top:15px;
+}
+
+#calender img{
+    opacity: 0.75;
+}
+#calender img:hover{
+    opacity: 1.1;
+}
+#calender #img-2{
+    margin-top:10px;
+}
+#calender #img-2 img{
+    margin-top:10px;
+    width: 100%;
+    border-radius: 5%;
+    height: 100px;
+}
+
+#calender #button-order{
+    clear: both;
+}
+#calender .bt-od, #calender .send-order{
+    margin-top:15px;
+    border: none;
+
+    background:#008a6d ;
+    padding: 7px 16px;
+    color: white;
+}
+#calender .bt-od{
+    float: right;
+}
+#calender .bt-od span{
+    font-size: 11px;
+    width: 2.5em;
+    top: 0;
+}
+#calender input ,#calender label{
+    display: block;
+    width: 100%;
+}
+#calender input{
+    border: 0.5px solid #c7cfc6;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+#calender .message-input{
+    height: 150px;
+}
+@media screen and (max-width: 1201px){
+    #calender {
+        display: none;
+    }
+}
+#calender  {
+    margin:15px 0px;
+}
+#calender a{
+    display: block;
+    font-weight: 600;
+    color: #727272;
+}
+#calender .div-mt{
+    margin-top:7px;
+}
+#calender a.atime{
+    color: #00a885;
+}
+#calender a.aclose{
+    color:#f66;
+}
+#calender .pd-a-order a{
+    padding: 5px 0;
+    border-bottom:1px dashed #efefef;
+}
+#calender .col-sm-7{
+    text-align: center;
+}
+#calender .a-order-h-l a.atime{
+    background: #fff;
+}
+#calender .a-order-h-l a{
+    height: 25px;
+    width:100%;
+    border: 1px solid white;
+    background: #008a6d;
+    box-shadow:2px 5px 5px 0px silver;
+}
+#calender .a-order-h-l a:active{
+    background: #669c6e;
+
+}
+#calender #click-open-she button{
+    margin:15px;
+}
+#calender .a-order-h-l a.xxx{
+    background: #f66;
+}
+#calender .a-order-h-l a.aaa{
+    background: #999;
+}
+
+
+
+/*    HEADERWRAP   */
+#headerwrap {
+    background: url(../images/header/bg.webp) no-repeat center top;
+    background-attachment: fixed;
+    margin:0px;
+    padding-top: 20px;
+    text-align: center;
+    background-position: center center;
+    min-height: 750px;
+    width: 100%;
+    background-size: cover;
+}
+#headerwrap h1 {
+    margin-top: 100px;
+    color:rgba(47, 47, 47, 0.52);
+    font-size: 100px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+#headerwrap h2 {
+    color: #6d6d6d;
+    font-size: 50px;
+    font-weight: 100;
+    letter-spacing: 2px;
+}
+#headerwrap a {
+   background: rgba(24, 20, 34, 0.4);
+    padding: 10px;
+    border-radius: 10px;
+}
+#headerwrap i {
+    font-size: 35px;
+    color: #fff;
+}
+#headerwrap i:hover {
+    color: #d7d7d7;
+}
+#headerwrap .spacer {
+    margin-top: 180px;
+}
+
+
+
+
+
+
+/*  PRICES-TOP  */
+#prices {
+    margin: 20px 0px;
+}
+#prices h1{
+    font-size: 24px !important;
+
+}
+#prices img{
+    width: 100%;
+    height: 112px;
+    border-radius: 50%;
+    margin-top:10px;
+}
+#prices ul{
+    border: 1px solid #e4e6d9;
+    list-style: none;
+    margin-left:10px;
+    margin-top: 10px;
+}
+#prices .mt-li-up{
+    margin-top:15px;
+}
+#prices .name{
+    float: left;
+
+}
+#prices .money{
+    float: right;
+}
+#prices .money p{
+    color: #00a885;
+    font-weight: 600;
+    padding-right:15px;
+}
+#prices li{
+    float: left;
+    border-bottom: 1px dashed #ddd;
+    width: 100%;
+    padding: 2px 0;
+}
+/*************************************************/
+@media screen and (max-width: 769px){
+    #prices img{
+        height: 92px;
+
+    }
+}
+@media screen and (width: 800px){
+    #prices img{
+        height: 72px;
+
+    }
+}
+
+
+
+
+
+
+
+/*  PRODUCTS  */
+#products img{
+    width: 100%;
+    box-shadow: 0 10px 5px 0 rgba(66, 38, 66, 0.52);
+    border-radius: 0px 60px 0px 60px;
+    height: 250px;
+    margin-top:7px;
+}
+#products .row{
+    margin-top:15px;
+}
+@media screen and (max-width: 1000px){
+    #products img{
+        width: 100%;
+        height: 150px;
+    }
+}
+@media screen and (max-width: 486px){
+    #products img{
+        width: 100%;
+        height: 100px;
+        border-radius: 0px 50px 0px 50px;
+    }
+}
+
+#products {
+    text-align: center;
+}
+#products .name-products{
+    font-weight: 600;
+    margin-top:15px;
+}
+#products .price-products{
+    color: #f44336;
+    font-weight: 600;
+}
+#products .free-products{
+    text-decoration: line-through
+}
+#products .add-products{
+    width: 100%;
+    margin-bottom:7px;
+}
+#products .col-xs-3:hover{
+    border: 1px solid silver;
+}
+
+@media screen and (max-width:769px ){
+    #products .name-products{
+        font-size: 11px;
+    }
+    #products .price-products{
+        font-size: 13px;
+    }
+    #products .free-products{
+        font-size: 14px;
+    }
+    #products .add-products{
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width:586px ){
+    #products .name-products{
+        font-size: 9px;
+    }
+    #products .price-products{
+        font-size: 10px;
+    }
+    #products .free-products{
+        font-size: 7px;
+    }
+    #products .add-products{
+        font-size: 8px;
+    }
+}
+
+
+
+
+
+
+
+/*  IMAGES  */
+#port {
+    width: 100%}
+.grid {
+    max-width: 69em;
+    list-style: none;
+    margin: 30px auto;
+    padding: 0;
+}
+.grid li {
+    display: block;
+    float: left;
+    padding: 7px;
+    width: 20%;
+    opacity: 0;
+}
+.grid li.shown, .no-js .grid li, .no-cssanimations .grid li {
+    opacity: 1;
+}
+.grid li a, .grid li img {
+    outline: 0;
+    border: 0;
+    display: block;
+    box-shadow: 0px 0px 15px 0px #827878;
+    max-width: 100%}
+.grid img {
+    cursor: pointer;
+    opacity: .8;
+}
+.grid img:hover {
+    opacity: 1;
+}
+.grid.effect-2 li.animate {
+    -webkit-transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    transform: translateY(200px);
+    -webkit-animation: moveUp .65s ease forwards;
+    -moz-animation: moveUp .65s ease forwards;
+    animation: moveUp .65s ease forwards;
+}
+
+
+
+
+
+/*   HAIRSTYLE   */
+.stylehair a{
+    color: white;
+    padding: 10px;
+}
+@media screen and (max-width: 768px){
+    .stylehair h1{
+        font-size: 30px;
+    }
+    .stylehair p{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 500px){
+    .stylehair h1{
+        font-size: 20px;
+    }
+    .stylehair p{
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+
+/*  VIDEO  */
+#video iframe{
+    width: 100%;
+    height: 200px;
+    box-shadow: 0px 10px 20px 0px #436f65;
+}
+#video .row,#text-img .row{
+    margin-top:20px;
+}
+
+
+
+
+
+/*  TEXT-IMG */
+#text-img img{
+    width: 100%;
+    border-radius: 0px 20px 50px 5px;
+    box-shadow: 0px 10px 10px 5px rgba(167, 151, 151, 0.51)}
+#text-img .h5{
+    font-weight: 600;
+}
+
+
+
+
+
+ /*     CALL    */
+#call {
+    margin-top:15px;
+    background: #2f2f2f;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    text-align: center;
+}
+#call h3,#call p, #call a {
+    color: #fff;
+}
+
+
+
+
+
+
+
+/*    Contact    */
+#sf {
+    margin-top: 15px;
+    display: block;
+    width: 100%  ;
+}
+#sf .container {
+    width: 100%}
+#sf .col-xs-4 {
+    margin: 0;
+    padding: 15px;
+}
+#sf .lg {
+    background-color: #1abc9c;
+}
+#sf .dg {
+    background-color: #16a085;
+}
+#sf h4 {
+    color: #fff;
+}
+#sf p {
+    color: #fff;
+}
+#sf .ml {
+    margin-left: 30px;
+}
+#sf i {
+    font-size: 70px;
+    color: #fff;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.centered {
+    text-align: center;
+}
+/************************************************/
+#contacts {
+    margin:20px 0 30px 0;
+}
+#contacts .form-control-label{
+    font-size: 1.5rem;
+}
+#contacts .alert-success{
+    text-align: center;
+    font-size: 1.4rem;
+}
+#contacts .input-contacts{
+    padding: 7px 15px;
+    float: right;
+}
+@media screen and (max-width: 768px){
+    #sf i {
+        font-size: 3em;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    #sf h4 {
+        color: #fff;
+        font-size: 12px;
+    }
+    #sf .ml {
+        margin-left: 0px;
+    }
+    #sf p {
+        color: #fff;
+        font-size: 12px;
+    }
+
+}
+@media screen and (max-width: 500px){
+    #sf p {
+        color: #fff;
+        font-size: 9px;
+    }
+}
+
+
+
+
+
+/* MAP + ADDRESS */
+#mapwrap {
+    margin: 0;
+    padding: 0;
+}
+#cf {
+    background: #2f2f2f;
+}
+#cf h4 {
+    color: #fff;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+#cf p {
+    color: #fff;
+    font-size: 15px;
+    line-height: 18px;
+    margin-left: 15px;
+}
+#cf .container {
+    width: 100%}
+#cf .col-lg-8 {
+    margin: 0;
+    padding: 0;
+}
+#cf iframe{
+    width: 100%;
+    height: 350px;
+}
+
+
+
+/*    SERVICES      */
+#services{
+    background-color: #2f2f2f;
+    border-top:1px solid #4b4b4b;
+}
+#services h1{
+    font-size: 18px;
+    color: white;
+}
+#services p{
+    color: white;
+    text-align: left;
+    font-size: 14px;
+}
+#services p.pletter{
+    font-weight: 600;
+}
+#services p.ptime{
+    color: #16a085;
+}
+#services p.pclose{
+    color: #f66;
+    font-weight:600 ;
+}
+#services a.buy{
+    padding: 10px 30px;
+    background: #16a085;
+    color: white;
+    font-weight: 600;
+}
+
+
+
+/*  FOOTER  */
+#footer{
+    border-top:1px solid #4b4b4b;
+    background: url("../images/footer/bg.png");
+    text-align: center;
+    background-color: #2f2f2f;
+    width: 100%;
+    height: 70px;
+}
+#footer span{
+    margin-top:15px;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #ffffff;
+}
+#footer span:hover{
+    color: #999999;
+}
+#footer p{
+    font-size: 13px;
+    color: #f4f4f4;
+}
+
+
+
+
+
+
+
+#img-1 img{
+    width: 100%;
+
+}
+
+
+
+
+#tet img{
+    position:fixed;
+    z-index: 999999;
+}
+#tet .top-left{top:0;left:0}
+#tet .top-right{z-index:5;top:0;right:0}
+#tet .bottom-left{bottom:0px;left:0px}
+#tet .bottom-right{bottom:0px;right:0px}
+@media screen and (max-width:340px ){
+    #headerwrap h1{
+        font-size: 70px;
+    }
+
+}
+.goog-te-gadget-simple{
+    background-color: #fff;
+     border:none;
+    cursor: pointer;
+     zoom: 0;
+}
+
+
+
+.tet-header{
+    background: url("../images/new-year.jpg");
+}
+/*
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+*/
+@-webkit-keyframes moveUp {
+    to {
+    -webkit-transform: translateY(0);
+    opacity: 1;
+}
+}
+@-moz-keyframes moveUp {
+    to {
+    -moz-transform: translateY(0);
+    opacity: 1;
+}
+}
+@keyframes moveUp {
+    to {
+    transform: translateY(0);
+    opacity: 1;
+}
+}
+
+@media screen and (max-width: 1000px){
+    p{
+        font-size: 14px;
+    }
+}
+
